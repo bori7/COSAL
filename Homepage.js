@@ -17,8 +17,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-
-const backgrounds = [ 
+const backgrounds = [
   require("./assets/AccessoriesBg.png"),
   require("./assets/PhoneBg.png"),
   require("./assets/CarBg.png"),
@@ -91,12 +90,16 @@ const GridProductDisplay = () => {
       keyExtractor={(item) => item.name}
       renderItem={({ item }) => {
         return (
-          <View style={styles.inner}>
+          <Pressable
+            style={styles.inner}
+            onPress={() => {
+              navigation.navigate("ProductDetails");
+            }}
+          >
             <Image
               source={item.uri}
               style={styles.image}
               resizeMode={"contain"}
-              
             />
             <Text style={styles.textFont}>{item.category}</Text>
             <Text style={styles.textFont}>{item.title}</Text>
@@ -111,16 +114,18 @@ const GridProductDisplay = () => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems:"center"
+                  alignItems: "center",
                 }}
               >
                 <AntDesign name="star" color={"#F8A23B"} size={15} />
-                <Text style={{marginHorizontal:6,color:"grey"}}>{item.rating}</Text>
-                <View style={{justifyContent:"center",marginBottom:4}}>
-                    <Text style={{color:"grey"}}>.</Text>
+                <Text style={{ marginHorizontal: 6, color: "grey" }}>
+                  {item.rating}
+                </Text>
+                <View style={{ justifyContent: "center", marginBottom: 4 }}>
+                  <Text style={{ color: "grey" }}>.</Text>
                 </View>
-                
-                <Text style={{color:"grey"}}>{item.item}</Text>
+
+                <Text style={{ color: "grey" }}>{item.item}</Text>
               </View>
 
               <View style={{ alignSelf: "flex-end" }}>
@@ -129,14 +134,14 @@ const GridProductDisplay = () => {
                 </Text>
               </View>
             </View>
-          </View>
+          </Pressable>
         );
       }}
     ></FlatList>
   );
 };
 
-const Homepage = () => {
+export default function Homepage({navigation}){
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -245,7 +250,11 @@ const Homepage = () => {
           />
           <Text>Categories</Text>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 20 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 20 }}
+        >
           {categories.map((d) => {
             return (
               <Pressable>
@@ -286,17 +295,13 @@ const Homepage = () => {
         </View>
 
         <View>
-            <Text style={{ fontWeight: "700" }}>
-            All Products
-            </Text>  
+          <Text style={{ fontWeight: "700" }}>All Products</Text>
         </View>
 
         <View>
-            <GridProductDisplay/>
-            <GridProductDisplay/>
+          <GridProductDisplay />
+          <GridProductDisplay />
         </View>
-
-        
       </ScrollView>
     </>
   );
@@ -335,4 +340,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Homepage;
+

@@ -1,14 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Homepage from './Homepage';
-import ProductDetails from './ProductDetails';
+import { View, Text } from 'react-native'
+import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { NavigationContainer } from '@react-navigation/native';
+import Homepage from '../Homepage';
+import ProductDetails from '../ProductDetails';
 
-export default function App() {
+const HomePageStack = () => {
 
-  const Stack = createNativeStackNavigator();
+    const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
@@ -23,14 +23,8 @@ export default function App() {
         />
     </Stack.Navigator>
     </NavigationContainer>
-  );
+   
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default HomePageStack
