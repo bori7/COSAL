@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Image } from "react-native";
 import { View, Text } from "../Themed";
 import { PRODUCTS } from "../../constants/Products";
 import React from "react";
+import Colors from "../../constants/Colors";
 
 export const GridProductDisplay = () => {
   const [data, setData] = useState(PRODUCTS);
@@ -23,15 +24,10 @@ export const GridProductDisplay = () => {
                 resizeMode={"cover"}
               />
             </Pressable>
-            <Text style={styles.textFont}>{item.category}</Text>
-            <Text style={styles.textFont}>{item.title}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
+
+            <View style={styles.subInner}>
+              <Text style={styles.textFont}>{item.category}</Text>
+              <Text style={styles.textFont}>{item.title}</Text>
               <View
                 style={{
                   flexDirection: "row",
@@ -39,21 +35,29 @@ export const GridProductDisplay = () => {
                   alignItems: "center",
                 }}
               >
-                <AntDesign name="star" color={"#F8A23B"} size={15} />
-                <Text style={{ marginHorizontal: 6, color: "grey" }}>
-                  {item.rating}
-                </Text>
-                <View style={{ justifyContent: "center", marginBottom: 4 }}>
-                  <Text style={{ color: "grey" }}>.</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <AntDesign name="star" color={"#F8A23B"} size={15} />
+                  <Text style={{ marginHorizontal: 6, color: "grey" }}>
+                    {item.rating}
+                  </Text>
+                  <View style={{ justifyContent: "center", marginBottom: 4 }}>
+                    <Text style={{ color: "grey" }}>.</Text>
+                  </View>
+
+                  <Text style={{ color: "grey" }}>{item.item}</Text>
                 </View>
 
-                <Text style={{ color: "grey" }}>{item.item}</Text>
-              </View>
-
-              <View style={{ alignSelf: "flex-end" }}>
-                <Text style={{ fontSize: 20, color: "green" }}>
-                  {item.price}
-                </Text>
+                <View style={{ alignSelf: "flex-end" }}>
+                  <Text style={{ fontSize: 20, color: "green" }}>
+                    {item.price}
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -68,18 +72,28 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 20,
     justifyContent: "space-between",
-    padding: 5,
   },
   inner: {
-    marginRight: 30,
-    marginBottom: 30,
-    width: 140,
+    width: "48%",
+    marginBottom: 35,
+    shadowColor: Colors.light.tabIconDefault,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   image: {
-    width: 140,
-    height: 100,
+    width: "100%",
+    height: 160,
   },
   textFont: {
     fontSize: 12,
+  },
+  subInner: {
+    marginHorizontal: 15,
+    marginTop: 20,
+    marginBottom: 30,
   },
 });
