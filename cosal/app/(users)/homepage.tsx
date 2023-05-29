@@ -6,19 +6,18 @@ import {
   TextInput,
   ScrollView,
   Pressable,
-  View,
-  Text,
 } from "react-native";
-// import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { CATEGORIES, BACKGROUNDS } from "../../constants/Products";
+import { CATEGORIES, BACKGROUNDS } from "../../constants/Objects";
 import { GridProductDisplay } from "../../components/users/GridProductDisplay";
-// import {} from "../../components/Themed";
+import { View, Text } from "../../components/Themed";
+import Colors from "../../constants/Colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Homepage({}) {
   const [index, setIndex] = useState(0);
+  const [catIndex, setCatIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,115 +27,168 @@ export default function Homepage({}) {
   }, []);
 
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <View style={{ height: 380 }}>
         <ImageBackground source={BACKGROUNDS[index]} style={styles.background}>
           <View style={styles.mainView}>
             <View
               style={{
-                borderColor: "white",
-                borderWidth: 1,
-                width: 270,
-                height: 30,
+                marginTop: 10,
                 flexDirection: "row",
                 alignItems: "center",
-                paddingLeft: 10,
-                top: 30,
+                justifyContent: "space-between",
+                backgroundColor: Colors.light.transparent,
               }}
             >
-              <Feather
-                name="search"
-                color={"white"}
-                style={{ paddingRight: 20 }}
-              />
+              <View
+                style={{
+                  borderColor: "white",
+                  height: 50,
+                  width: "80%",
+                  borderWidth: 1,
+                  backgroundColor: Colors.light.transparent,
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Feather
+                  name="search"
+                  color={"white"}
+                  style={{
+                    marginHorizontal: 15,
+                    fontSize: 19,
+                  }}
+                />
 
-              <TextInput
-                placeholder="Search ..."
-                placeholderTextColor={"white"}
-                style={{ width: 250 }}
-              />
-              <View style={{ padding: 2 }}>
+                <TextInput
+                  placeholder="Search ..."
+                  placeholderTextColor={"white"}
+                  style={{ fontSize: 17 }}
+                />
+              </View>
+
+              <View
+                style={{
+                  padding: 2,
+                  backgroundColor: Colors.light.transparent,
+                  height: 50,
+                  marginRight: 20,
+                }}
+              >
                 <View
                   style={{
-                    borderRadius: 20,
+                    borderRadius: 8,
                     backgroundColor: "#ECA789",
                     alignItems: "center",
-                    width: 13,
-                    height: 13,
-                    left: 7,
+                    justifyContent: "center",
+                    width: 15,
+                    height: 15,
+                    padding: 1,
+                    alignSelf: "flex-end",
                   }}
                 >
-                  <Text style={{ color: "#97350B" }}>1</Text>
+                  <Text style={{ color: "#97350B", fontSize: 10 }}>1</Text>
                 </View>
-                <Entypo size={20} name="shopping-basket" color={"white"} />
+
+                <Entypo size={30} name="shopping-basket" color={"white"} />
               </View>
-              <BlurView
-                intensity={100}
+            </View>
+            <BlurView
+              intensity={100}
+              style={{
+                width: 230,
+                height: 140,
+                position: "absolute",
+                top: 150,
+              }}
+            >
+              <Text
                 style={{
-                  width: 230,
-                  height: 140,
-                  position: "absolute",
-                  top: 110,
+                  fontWeight: "900",
+                  color: "white",
+                  fontSize: 20,
+                  paddingTop: 10,
+                  paddingLeft: 10,
+                }}
+              >
+                Check out New and Trending Products
+              </Text>
+              <View
+                style={{
+                  marginTop: 30,
+                  marginLeft: 10,
+                  width: 110,
+                  height: 40,
+                  backgroundColor: "black",
                 }}
               >
                 <Text
                   style={{
-                    fontWeight: "900",
                     color: "white",
-                    fontSize: 20,
-                    paddingTop: 10,
-                    paddingLeft: 10,
+                    textAlign: "center",
+                    alignItems: "center",
+                    top: 10,
                   }}
                 >
-                  Check out New and Trending Products
+                  Check this out
                 </Text>
-                <View
-                  style={{
-                    marginTop: 30,
-                    marginLeft: 10,
-                    width: 110,
-                    height: 40,
-                    backgroundColor: "black",
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "white",
-                      textAlign: "center",
-                      alignItems: "center",
-                      top: 10,
-                    }}
-                  >
-                    Check this out
-                  </Text>
-                </View>
-              </BlurView>
-            </View>
+              </View>
+            </BlurView>
           </View>
         </ImageBackground>
       </View>
       <View
-        style={{ flexDirection: "row", marginTop: 10, alignItems: "center" }}
+        style={{
+          flexDirection: "row",
+          marginTop: 15,
+          marginLeft: 30,
+          alignItems: "center",
+        }}
       >
-        <MaterialIcons name="category" size={20} style={{ paddingRight: 10 }} />
+        <MaterialCommunityIcons
+          name="view-dashboard-outline"
+          color="black"
+          style={{ paddingRight: 10, fontSize: 25, fontWeight: "normal" }}
+        />
         <Text>Categories</Text>
       </View>
       <ScrollView
-        horizontal
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
-        style={{ marginTop: 20 }}
+        showsVerticalScrollIndicator={false}
+        style={styles.categoriesStyle}
+        contentContainerStyle={styles.categoriesContentStyle}
       >
         {CATEGORIES.map((d, index) => {
           return (
-            <Pressable key={`#${index}`}>
-              <Text style={{ marginRight: 20, fontSize: 15 }}>{d}</Text>
+            <Pressable
+              key={`#${index}`}
+              style={
+                catIndex !== index ? styles.category : styles.categoryActive
+              }
+              onPress={() => {
+                setCatIndex(index);
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "500",
+                  color: `${catIndex != index ? "grey" : Colors.light.text}`,
+                }}
+              >
+                {d}
+              </Text>
             </Pressable>
           );
         })}
       </ScrollView>
-      <ScrollView style={styles.secondView}>
+      <ScrollView
+        style={styles.secondView}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={{ marginTop: 30 }}>
-          <Text style={{ fontWeight: "700", marginVertical: 10 }}>
+          <Text style={{ fontWeight: "700", marginVertical: 10, fontSize: 18 }}>
             Popular Products
           </Text>
         </View>
@@ -145,38 +197,32 @@ export default function Homepage({}) {
           <GridProductDisplay />
         </View>
 
-        <View
+        <Text
           style={{
-            marginTop: 30,
-            marginLeft: 10,
-            width: 110,
-            height: 40,
+            color: "white",
+            textAlign: "center",
             backgroundColor: "black",
+            width: "35%",
             alignSelf: "center",
+            fontSize: 18,
+            paddingVertical: 11,
+            marginBottom: 22,
           }}
         >
-          <Text
-            style={{
-              color: "white",
-              textAlign: "center",
-              alignItems: "center",
-              top: 10,
-            }}
-          >
-            See more
-          </Text>
-        </View>
+          See more
+        </Text>
+
+        <Text style={{ fontWeight: "700", marginVertical: 20, fontSize: 18 }}>
+          All Products
+        </Text>
 
         <View>
-          <Text style={{ fontWeight: "700" }}>All Products</Text>
-        </View>
-
-        <View>
+          <GridProductDisplay />
           <GridProductDisplay />
           <GridProductDisplay />
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 }
 
@@ -191,6 +237,37 @@ const styles = StyleSheet.create({
   },
   mainView: {
     marginTop: 50,
+    backgroundColor: Colors.light.transparent,
+  },
+  categoriesStyle: {
+    marginTop: 20,
+    backgroundColor: Colors.light.greyCategory,
+    height: 100,
+  },
+  categoriesContentStyle: {
+    marginHorizontal: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  category: {
+    marginRight: 15,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  categoryActive: {
+    backgroundColor: Colors.light.background,
+    marginRight: 15,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: Colors.light.tabIconDefault,
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
   },
   secondView: {
     marginHorizontal: 30,

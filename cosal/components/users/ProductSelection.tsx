@@ -1,5 +1,5 @@
 import React from "react";
-import { PRODUCTS } from "../../constants/Products";
+import { PRODUCTS } from "../../constants/Objects";
 import { View, Text } from "../Themed";
 import { Image, StyleSheet } from "react-native";
 

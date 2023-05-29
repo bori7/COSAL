@@ -13,6 +13,10 @@ export const CATEGORIES = [
   "Computers",
   "Vehicles",
   "Property",
+  "Electronics",
+  "Computers",
+  "Vehicles",
+  "Property",
 ];
 
 export const PRODUCTS = [

@@ -2,7 +2,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Image } from "react-native";
 import { View, Text } from "../Themed";
-import { PRODUCTS } from "../../constants/Products";
+import { PRODUCTS } from "../../constants/Objects";
 import React from "react";
 import Colors from "../../constants/Colors";
 
@@ -26,13 +26,16 @@ export const GridProductDisplay = () => {
             </Pressable>
 
             <View style={styles.subInner}>
-              <Text style={styles.textFont}>{item.category}</Text>
+              <Text style={{ color: "grey", marginBottom: 4 }}>
+                {item.category}
+              </Text>
               <Text style={styles.textFont}>{item.title}</Text>
               <View
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  marginTop: 10,
                 }}
               >
                 <View
@@ -54,7 +57,13 @@ export const GridProductDisplay = () => {
                 </View>
 
                 <View style={{ alignSelf: "flex-end" }}>
-                  <Text style={{ fontSize: 20, color: "green" }}>
+                  <Text
+                    style={{
+                      fontSize: 21,
+                      color: Colors.light.price,
+                      fontWeight: "bold",
+                    }}
+                  >
                     {item.price}
                   </Text>
                 </View>
@@ -72,6 +81,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 20,
     justifyContent: "space-between",
+    fontFamily: "Inter",
   },
   inner: {
     width: "48%",
@@ -81,7 +91,7 @@ const styles = StyleSheet.create({
       width: 3,
       height: 3,
     },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.2,
     shadowRadius: 5,
   },
   image: {
@@ -89,7 +99,7 @@ const styles = StyleSheet.create({
     height: 160,
   },
   textFont: {
-    fontSize: 12,
+    fontSize: 15,
   },
   subInner: {
     marginHorizontal: 15,
