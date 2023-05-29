@@ -23,7 +23,7 @@ export default function Homepage({}) {
       setIndex((index + 1) % BACKGROUNDS.length);
     }, 5000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [index]);
 
   return (
     <View style={{ flex: 1 }}>
