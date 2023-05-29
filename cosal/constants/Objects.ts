@@ -1,3 +1,4 @@
+import { ImageSourcePropType } from "react-native";
 import { IMAGES } from "./Images";
 
 export const BACKGROUNDS = [
@@ -19,7 +20,18 @@ export const CATEGORIES = [
   "Property",
 ];
 
-export const PRODUCTS = [
+export interface ProductType {
+  key: number;
+  category: string;
+  title: string;
+  uri: ImageSourcePropType;
+
+  price: string;
+  item: number;
+  rating: number;
+}
+
+export const PRODUCTS: ProductType[] = [
   {
     key: 1,
     category: "Fashion",

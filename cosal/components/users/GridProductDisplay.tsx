@@ -5,17 +5,23 @@ import { View, Text } from "../Themed";
 import { PRODUCTS } from "../../constants/Objects";
 import React from "react";
 import Colors from "../../constants/Colors";
+import { useRouter } from "expo-router";
 
 export const GridProductDisplay = () => {
   const [data, setData] = useState(PRODUCTS);
+  const router = useRouter();
   return (
     <View style={styles.grid}>
       {data &&
-        data?.map((item) => (
+        data?.map((item, index) => (
           <View key={`#${item.key}`} style={styles.inner}>
             <Pressable
               onPress={() => {
-                //   navigation.navigate("ProductDetails");
+                console.log("I am pressed::", index);
+                router.push({
+                  pathname: "/(users)/productpage",
+                  params: { productId: index },
+                });
               }}
             >
               <Image
@@ -81,7 +87,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 20,
     justifyContent: "space-between",
-    fontFamily: "Inter",
   },
   inner: {
     width: "48%",

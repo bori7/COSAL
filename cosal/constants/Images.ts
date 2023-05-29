@@ -1,11 +1,20 @@
-export const IMAGES = {
-  accessoryBg: require("../assets/images/AccessoriesBg.png"),
-  phoneBg: require("../assets/images/PhoneBg.png"),
-  carBg: require("../assets/images/CarBg.png"),
-  homeBg: require("../assets/images/HomeBg.png"),
+import accessoryBg from "../assets/images/AccessoriesBg.png";
+import phoneBg from "../assets/images/PhoneBg.png";
+import carBg from "../assets/images/CarBg.png";
+import homeBg from "../assets/images/HomeBg.png";
 
-  clotheSale: require("../assets/images/ClothesSale.png"),
-  laptopSale: require("../assets/images/LaptopSale.png"),
-  houseSale: require("../assets/images/houseSale.png"),
-  carSale: require("../assets/images/carSale.png"),
+import clotheSale from "../assets/images/ClothesSale.png";
+import laptopSale from "../assets/images/LaptopSale.png";
+import houseSale from "../assets/images/houseSale.png";
+import carSale from "../assets/images/carSale.png";
+
+export const IMAGES = {
+  accessoryBg,
+  phoneBg,
+  carBg,
+  homeBg,
+  clotheSale,
+  laptopSale,
+  houseSale,
+  carSale,
 };

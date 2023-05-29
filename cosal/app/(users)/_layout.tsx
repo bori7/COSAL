@@ -7,23 +7,32 @@ import { Stack } from "expo-router";
 import React from "react";
 import { useColorScheme } from "react-native";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: "homepage",
+};
 
 export default function RootLayout() {
   return <RootLayoutNav />;
 }
-
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
   return (
     <>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack initialRouteName="index">
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="homepage" options={{ headerShown: false }} />
+        <Stack initialRouteName="homepage">
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false, title: "USERS" }}
+          />
+          <Stack.Screen
+            name="homepage"
+            options={{ headerShown: false, title: "Products" }}
+          />
+          <Stack.Screen
+            name="productpage"
+            options={{ headerShown: false, title: "Product" }}
+          />
         </Stack>
       </ThemeProvider>
     </>

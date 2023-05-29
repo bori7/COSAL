@@ -1,11 +1,12 @@
 import { BlurView } from "expo-blur";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   ImageBackground,
   StyleSheet,
   TextInput,
   ScrollView,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { Feather, SimpleLineIcons } from "@expo/vector-icons";
 import { CATEGORIES, BACKGROUNDS } from "../../constants/Objects";
@@ -13,10 +14,16 @@ import { GridProductDisplay } from "../../components/users/GridProductDisplay";
 import { View, Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Link, useRouter } from "expo-router";
 
 export default function Homepage({}) {
   const [index, setIndex] = useState(0);
   const [catIndex, setCatIndex] = useState(0);
+  const router = useRouter();
+
+  // const updateBgIndex = useCallback(() => {
+  //   setIndex((index + 1) % BACKGROUNDS.length);
+  // }, [index]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -160,7 +167,7 @@ export default function Homepage({}) {
       >
         {CATEGORIES.map((d, index) => {
           return (
-            <Pressable
+            <TouchableOpacity
               key={`#${index}`}
               style={
                 catIndex !== index ? styles.category : styles.categoryActive
@@ -178,7 +185,7 @@ export default function Homepage({}) {
               >
                 {d}
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
