@@ -7,8 +7,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import Feather from "@expo/vector-icons/Feather";
-import Entypo from "@expo/vector-icons/Entypo";
+import { Feather, SimpleLineIcons } from "@expo/vector-icons";
 import { CATEGORIES, BACKGROUNDS } from "../../constants/Objects";
 import { GridProductDisplay } from "../../components/users/GridProductDisplay";
 import { View, Text } from "../../components/Themed";
@@ -28,7 +27,7 @@ export default function Homepage({}) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ height: 380 }}>
+      <View style={{ height: 350 }}>
         <ImageBackground source={BACKGROUNDS[index]} style={styles.background}>
           <View style={styles.mainView}>
             <View
@@ -90,7 +89,7 @@ export default function Homepage({}) {
                   <Text style={{ color: "#97350B", fontSize: 10 }}>1</Text>
                 </View>
 
-                <Entypo size={30} name="shopping-basket" color={"white"} />
+                <SimpleLineIcons size={30} name="basket" color={"white"} />
               </View>
             </View>
             <BlurView
@@ -99,7 +98,7 @@ export default function Homepage({}) {
                 width: 230,
                 height: 140,
                 position: "absolute",
-                top: 150,
+                top: 120,
               }}
             >
               <Text
