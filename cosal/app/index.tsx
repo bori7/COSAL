@@ -3,8 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Pressable,
   useColorScheme,
+  TouchableOpacity,
 } from "react-native";
 import { Link, Stack } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
@@ -14,20 +14,18 @@ export default function Users() {
   const colorScheme = useColorScheme();
   return (
     <>
-      <Stack.Screen options={{ title: "HOME" }} />
+      <Stack.Screen options={{ title: "COSAL" }} />
       <View style={styles.container}>
-        <Text>I am home</Text>
+        <Text style={{ fontSize: 50 }}>COSAL</Text>
         <Link href="/(users)/homepage" asChild>
-          <Pressable>
-            {({ pressed }) => (
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme ?? "light"].text}
-                style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-              />
-            )}
-          </Pressable>
+          <TouchableOpacity onPress={() => {}}>
+            <FontAwesome
+              name="caret-right"
+              size={50}
+              color={Colors[colorScheme ?? "light"].text}
+              style={{ marginRight: 15 }}
+            />
+          </TouchableOpacity>
         </Link>
       </View>
     </>
