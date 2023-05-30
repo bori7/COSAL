@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
 import { Feather, SimpleLineIcons } from "@expo/vector-icons";
@@ -14,16 +13,12 @@ import { GridProductDisplay } from "../../components/users/GridProductDisplay";
 import { View, Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
+import CartIcon from "../../components/users/CartIcon";
+import BlurComp from "../../components/users/BlurComp";
 
 export default function Homepage({}) {
   const [index, setIndex] = useState(0);
   const [catIndex, setCatIndex] = useState(0);
-  const router = useRouter();
-
-  // const updateBgIndex = useCallback(() => {
-  //   setIndex((index + 1) % BACKGROUNDS.length);
-  // }, [index]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -73,73 +68,9 @@ export default function Homepage({}) {
                 />
               </View>
 
-              <View
-                style={{
-                  padding: 2,
-                  backgroundColor: Colors.light.transparent,
-                  height: 50,
-                  marginRight: 20,
-                }}
-              >
-                <View
-                  style={{
-                    borderRadius: 8,
-                    backgroundColor: "#ECA789",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 15,
-                    height: 15,
-                    padding: 1,
-                    alignSelf: "flex-end",
-                  }}
-                >
-                  <Text style={{ color: "#97350B", fontSize: 10 }}>1</Text>
-                </View>
-
-                <SimpleLineIcons size={30} name="basket" color={"white"} />
-              </View>
+              <CartIcon />
             </View>
-            <BlurView
-              intensity={100}
-              style={{
-                width: 230,
-                height: 140,
-                position: "absolute",
-                top: 120,
-              }}
-            >
-              <Text
-                style={{
-                  fontWeight: "900",
-                  color: "white",
-                  fontSize: 20,
-                  paddingTop: 10,
-                  paddingLeft: 10,
-                }}
-              >
-                Check out New and Trending Products
-              </Text>
-              <View
-                style={{
-                  marginTop: 30,
-                  marginLeft: 10,
-                  width: 110,
-                  height: 40,
-                  backgroundColor: "black",
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    alignItems: "center",
-                    top: 10,
-                  }}
-                >
-                  Check this out
-                </Text>
-              </View>
-            </BlurView>
+            <BlurComp />
           </View>
         </ImageBackground>
       </View>
