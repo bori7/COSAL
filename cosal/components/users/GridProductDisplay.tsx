@@ -20,7 +20,14 @@ export const GridProductDisplay = () => {
                 console.log("I am pressed::", index);
                 router.push({
                   pathname: "/(users)/productpage",
-                  params: { productId: index },
+                  params: {
+                    productId: index,
+                    title: item.title,
+                    rating: item.rating,
+                    category: item.category,
+                    price: item.price,
+                    item: item.item
+                  },
                 });
               }}
             >
