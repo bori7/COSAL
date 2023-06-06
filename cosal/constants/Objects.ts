@@ -31,6 +31,20 @@ export interface ProductType {
   rating: number;
 }
 
+export interface LabelType {
+  label: string;
+  value: string;
+}
+
+export const LABELS: LabelType[] = [
+  { label: "Brand", value: "Apple" },
+  { label: "Display", value: "Display: Retina Display 16:9" },
+  { label: "Storage", value: "1TB" },
+  { label: "Memory", value: "16GB Ram" },
+  { label: "Model", value: "2019 Macbook Pro" },
+  { label: "OS", value: "Big Sur" },
+];
+
 export const PRODUCTS: ProductType[] = [
   {
     key: 1,

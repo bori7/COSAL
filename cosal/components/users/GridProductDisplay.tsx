@@ -1,87 +1,19 @@
-import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
-import { Pressable, StyleSheet, Image } from "react-native";
-import { View, Text } from "../Themed";
+import { StyleSheet } from "react-native";
+import { View } from "../Themed";
 import { PRODUCTS } from "../../constants/Objects";
 import React from "react";
 import Colors from "../../constants/Colors";
-import { useRouter } from "expo-router";
+import ProductCard from "./ProductCard";
 
 export const GridProductDisplay = () => {
   const [data, setData] = useState(PRODUCTS);
-  const router = useRouter();
   return (
     <View style={styles.grid}>
       {data &&
         data?.map((item, index) => (
           <View key={`#${item.key}`} style={styles.inner}>
-            <Pressable
-              onPress={() => {
-                console.log("I am pressed::", index);
-                router.push({
-                  pathname: "/(users)/productpage",
-                  params: {
-                    productId: index,
-                    title: item.title,
-                    rating: item.rating,
-                    category: item.category,
-                    price: item.price,
-                    item: item.item
-                  },
-                });
-              }}
-            >
-              <Image
-                source={item.uri}
-                style={styles.image}
-                resizeMode={"cover"}
-              />
-            </Pressable>
-
-            <View style={styles.subInner}>
-              <Text style={{ color: "grey", marginBottom: 4 }}>
-                {item.category}
-              </Text>
-              <Text style={styles.textFont}>{item.title}</Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: 10,
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <AntDesign name="star" color={"#F8A23B"} size={15} />
-                  <Text style={{ marginHorizontal: 6, color: "grey" }}>
-                    {item.rating}
-                  </Text>
-                  <View style={{ justifyContent: "center", marginBottom: 4 }}>
-                    <Text style={{ color: "grey" }}>.</Text>
-                  </View>
-
-                  <Text style={{ color: "grey" }}>{item.item}</Text>
-                </View>
-
-                <View style={{ alignSelf: "flex-end" }}>
-                  <Text
-                    style={{
-                      fontSize: 21,
-                      color: Colors.light.price,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {item.price}
-                  </Text>
-                </View>
-              </View>
-            </View>
+            <ProductCard item={item} index={index} />
           </View>
         ))}
     </View>
@@ -105,17 +37,5 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-  },
-  image: {
-    width: "100%",
-    height: 160,
-  },
-  textFont: {
-    fontSize: 15,
-  },
-  subInner: {
-    marginHorizontal: 15,
-    marginTop: 20,
-    marginBottom: 30,
   },
 });

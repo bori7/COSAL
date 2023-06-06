@@ -11,6 +11,10 @@ export default {
     price: "#4BB198",
     greyCategory: "#F2F4F7",
     transparent: "#00000000",
+    orange: "#E86313",
+    orangeLight: "#FFF9F5",
+    cogrey: "grey",
+    details: "#F9FAFB",
   },
   dark: {
     text: "#fff",
@@ -21,5 +25,9 @@ export default {
     price: "#4BB198",
     greyCategory: "#F2F4F7",
     transparent: "#00000000",
+    orange: "#E86313",
+    orangeLight: "#FFF9F5",
+    cogrey: "grey",
+    details: "#F9FAFB",
   },
 };

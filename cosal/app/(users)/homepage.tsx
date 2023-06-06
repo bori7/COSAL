@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { Feather, SimpleLineIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { CATEGORIES, BACKGROUNDS } from "../../constants/Objects";
 import { GridProductDisplay } from "../../components/users/GridProductDisplay";
 import { View, Text } from "../../components/Themed";
