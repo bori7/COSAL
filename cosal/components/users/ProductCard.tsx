@@ -27,11 +27,11 @@ export default function ProductCard({
           });
         }}
       >
-        <Image source={item.uri} style={styles.image} resizeMode={"cover"} />
+        <Image source={item?.uri} style={styles.image} resizeMode={"cover"} />
       </TouchableOpacity>
       <View style={styles.subInner}>
-        <Text style={{ color: "grey", marginBottom: 4 }}>{item.category}</Text>
-        <Text style={styles.textFont}>{item.title}</Text>
+        <Text style={{ color: "grey", marginBottom: 4 }}>{item?.category}</Text>
+        <Text style={styles.textFont}>{item?.title}</Text>
         <View
           style={{
             flexDirection: "row",
@@ -49,13 +49,13 @@ export default function ProductCard({
           >
             <AntDesign name="star" color={"#F8A23B"} size={15} />
             <Text style={{ marginHorizontal: 6, color: "grey" }}>
-              {item.rating}
+              {item?.rating}
             </Text>
             <View style={{ justifyContent: "center", marginBottom: 4 }}>
               <Text style={{ color: "grey" }}>.</Text>
             </View>
 
-            <Text style={{ color: "grey" }}>{item.item}</Text>
+            <Text style={{ color: "grey" }}>{item?.item}</Text>
           </View>
 
           <View style={{ alignSelf: "flex-end" }}>
@@ -66,7 +66,7 @@ export default function ProductCard({
                 fontWeight: "bold",
               }}
             >
-              {item.price}
+              {item?.price}
             </Text>
           </View>
         </View>

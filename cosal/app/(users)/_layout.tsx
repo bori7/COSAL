@@ -33,6 +33,10 @@ function RootLayoutNav() {
             name="productpage"
             options={{ headerShown: false, title: "Product" }}
           />
+          <Stack.Screen
+            name="cosellpage"
+            options={{ headerShown: false, title: "Cosell" }}
+          />
         </Stack>
       </ThemeProvider>
     </>

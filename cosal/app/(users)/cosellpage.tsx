@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
@@ -6,28 +5,33 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { LABELS, LabelType, PRODUCTS } from "../../constants/Objects";
+import Colors from "../../constants/Colors";
 import {
   AntDesign,
   Entypo,
   Feather,
-  FontAwesome5,
   SimpleLineIcons,
 } from "@expo/vector-icons";
-import CartIcon from "../../components/users/CartIcon";
-import { useLocalSearchParams } from "../../shared/custom-expo-router";
 import { View, Text } from "../../components/Themed";
-import Colors from "../../constants/Colors";
+import {
+  useLocalSearchParams,
+  useRouter,
+} from "../../shared/custom-expo-router";
+import { LabelType, PRODUCTS } from "../../constants/Objects";
+import CartIcon from "../../components/users/CartIcon";
+import LabelDetails from "../../components/users/LabelDetails";
 import ProductCard from "../../components/users/ProductCard";
 import ProductHeaderInfo from "../../components/users/ProductHeaderInfo";
-import LabelDetails from "../../components/users/LabelDetails";
 
-export default function ProductPage() {
-  const { productId } = useLocalSearchParams<"productpage">();
+export default function CosellPage() {
+  const { productId } = useLocalSearchParams<"cosellpage">();
 
   const product = PRODUCTS[productId];
   const [boxes, setBoxes] = useState<number[]>([1, 2, 3, 4, 5, 6]);
-  const [labels, setLabels] = useState<LabelType[]>(LABELS);
+  const [labels, setLabels] = useState<LabelType[]>([
+    { label: "Product Price", value: "\u00A3" + 1000 },
+    { label: "Profit", value: "\u00A3" + 100 },
+  ]);
   const [details, setDetails] = useState<number>(1);
 
   const router = useRouter();
@@ -127,167 +131,53 @@ export default function ProductPage() {
       <View style={{ padding: 15, flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <ProductHeaderInfo product={product} />
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                borderColor: "black",
-                borderWidth: 1,
-                height: 50,
-                width: "15%",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Entypo name="shop" size={24} color="black" />
-            </View>
 
-            <TouchableOpacity
-              style={{
-                width: "40%",
-                justifyContent: "space-evenly",
-                flexDirection: "row",
-                backgroundColor: "black",
-                alignItems: "center",
-              }}
-              onPress={() => {
-                router.push({
-                  pathname: "/(users)/cosellpage",
-                  params: { productId: productId },
-                });
-              }}
-            >
-              <Feather name="link-2" size={24} color={"white"} />
-              <Text style={{ fontWeight: "500", color: "white" }}>Cosell</Text>
-
-              <SimpleLineIcons name="arrow-down" size={15} color={"white"} />
-            </TouchableOpacity>
-
-            <View
-              style={{
-                borderColor: "black",
-                borderWidth: 1,
-                height: 50,
-                width: "40%",
-                justifyContent: "space-evenly",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <SimpleLineIcons name="basket" size={20} />
-              <Text style={{ fontWeight: "500" }}>Add to Cart</Text>
-            </View>
-          </View>
           <View style={{ marginVertical: 5 }}>
             <View
               style={{
                 flexDirection: "row",
-                // alignItems: "center",
                 marginBottom: 5,
               }}
             >
-              <TouchableOpacity
-                onPress={() => {
-                  setDetails(1);
-                }}
-              >
-                <View
+              <View style={{}}>
+                <Text
                   style={{
-                    borderBottomWidth: 3,
-                    borderBottomColor:
-                      details == 1
-                        ? Colors.light.text
-                        : Colors.light.transparent,
-                    paddingBottom: 8,
-                  }}
-                >
-                  <Text
-                    style={{
-                      paddingRight: 5,
-                      color:
-                        details == 1 ? Colors.light.text : Colors.light.cogrey,
-                      fontSize: 15,
-                      fontWeight: "500",
-                    }}
-                  >
-                    About Product
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setDetails(2);
-                }}
-              >
-                <View
-                  style={{
-                    borderBottomWidth: 3,
-                    borderBottomColor:
-                      details == 1
-                        ? Colors.light.transparent
-                        : Colors.light.text,
-                    paddingBottom: 8,
-                  }}
-                >
-                  <Text
-                    style={{
-                      paddingHorizontal: 12,
-                      color:
-                        details == 2 ? Colors.light.text : Colors.light.cogrey,
-                      fontSize: 15,
-                      fontWeight: "500",
-                    }}
-                  >
-                    Reviews
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
+                    paddingRight: 5,
 
-          <LabelDetails labels={labels} />
-          <View style={{ marginVertical: 30 }}>
-            <Text style={{ fontSize: 15, fontWeight: "500" }}>
-              Similar Products
-            </Text>
-            <Text style={{ color: Colors.light.cogrey }}>
-              you might like products from the same vendor
-            </Text>
+                    fontSize: 15,
+                    fontWeight: "500",
+                  }}
+                >
+                  Cosell
+                </Text>
+              </View>
+            </View>
           </View>
           <View
             style={{
-              marginTop: 20,
-              flexDirection: "row",
-              justifyContent: "space-between",
+              backgroundColor: Colors.light.greyCategory,
+              padding: 5,
+              marginLeft: 20,
+              alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 15, fontWeight: "500" }}>
-              Other Products from Vendor
+            <Text style={{ color: Colors.light.cogrey, fontSize: 13 }}>
+              Note: Maximum 20% of the Products price can be gained
             </Text>
-            <TouchableOpacity>
-              <Text style={{ color: Colors.light.price, marginRight: 10 }}>
-                see more
-              </Text>
-            </TouchableOpacity>
           </View>
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            style={styles.categoriesStyle}
-            contentContainerStyle={styles.categoriesContentStyle}
-          >
-            {[1, 2, 3, 4, 5].map((_, index) => (
-              <View key={`#${index}`} style={styles.otherProduct}>
-                <ProductCard item={PRODUCTS[productId]} index={productId} />
-              </View>
-            ))}
-          </ScrollView>
+
+          <LabelDetails labels={labels} />
+          <View style={{ marginVertical: 30, paddingLeft: 20 }}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "700",
+                color: Colors.light.cogrey,
+              }}
+            >
+              Total Price: {`${"\u00A3" + 1100}`}
+            </Text>
+          </View>
         </ScrollView>
       </View>
       <View style={styles.footer}>
@@ -306,7 +196,7 @@ export default function ProductPage() {
               fontWeight: "300",
             }}
           >
-            Price
+            Total Price
           </Text>
           <Text
             style={{
@@ -315,27 +205,29 @@ export default function ProductPage() {
               fontWeight: "bold",
             }}
           >
-            {product?.price}
+            {`${"\u00A3" + 1100}`}
           </Text>
         </View>
         <View
           style={{
-            width: "30%",
+            width: "35%",
             justifyContent: "space-evenly",
             flexDirection: "row",
             backgroundColor: "black",
             alignItems: "center",
           }}
         >
-          <Feather name="shopping-bag" size={24} color={"white"} />
-          <Text style={{ fontWeight: "500", color: "white" }}>Buy Now</Text>
+          <Feather name="link-2" size={24} color={"white"} />
+          <Text style={{ fontWeight: "500", color: "white" }}>Cosell</Text>
+
+          <SimpleLineIcons name="arrow-down" size={15} color={"white"} />
         </View>
         <View
           style={{
             borderColor: "black",
             borderWidth: 1,
             height: 50,
-            width: "40%",
+            width: "35%",
             justifyContent: "space-evenly",
             flexDirection: "row",
             alignItems: "center",

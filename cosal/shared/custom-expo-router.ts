@@ -5,6 +5,9 @@ type RootStackParamList = {
   productpage: {
     productId: string | number | any;
   };
+  cosellpage: {
+    productId: string | number | any;
+  };
   index: undefined;
 };
 
