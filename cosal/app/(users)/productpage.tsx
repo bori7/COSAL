@@ -124,8 +124,11 @@ export default function ProductPage() {
           </Text>
         </View>
       </View>
-      <View style={{ padding: 15, flex: 1 }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={{ padding: 15, flex: 1, paddingBottom: 40 }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ marginBottom: -60 }}
+        >
           <ProductHeaderInfo product={product} />
           <View
             style={{

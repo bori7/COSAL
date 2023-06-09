@@ -6,12 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import {
-  AntDesign,
-  Entypo,
-  Feather,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
+import { AntDesign, Feather, SimpleLineIcons } from "@expo/vector-icons";
 import { View, Text } from "../../components/Themed";
 import {
   useLocalSearchParams,
@@ -20,28 +15,30 @@ import {
 import { LabelType, PRODUCTS } from "../../constants/Objects";
 import CartIcon from "../../components/users/CartIcon";
 import LabelDetails from "../../components/users/LabelDetails";
-import ProductCard from "../../components/users/ProductCard";
 import ProductHeaderInfo from "../../components/users/ProductHeaderInfo";
+import { ProgressBarButton } from "../../components/ProgressBarButton";
 
 export default function CosellPage() {
+  const cWidth = 30;
+  const router = useRouter();
+
   const { productId } = useLocalSearchParams<"cosellpage">();
 
+  const [cosellPercent2, setCosellPercent2] = useState(0); //5-97.5
   const product = PRODUCTS[productId];
   const [boxes, setBoxes] = useState<number[]>([1, 2, 3, 4, 5, 6]);
   const [labels, setLabels] = useState<LabelType[]>([
     { label: "Product Price", value: "\u00A3" + 1000 },
     { label: "Profit", value: "\u00A3" + 100 },
   ]);
-  const [details, setDetails] = useState<number>(1);
 
-  const router = useRouter();
+  const handleSetCosellPercent = (val: number) => {
+    setCosellPercent2(val);
+  };
 
   useEffect(() => {
-    if (productId) {
-      // console.log(productId);
-      // console.log(product);
-    }
-  }, [productId]);
+    // console.log("cosellPercent2:", cosellPercent2);
+  }, [cosellPercent2]);
   return (
     <View style={{ flex: 1 }}>
       <View style={{ height: 280 }}>
@@ -128,8 +125,11 @@ export default function CosellPage() {
           </Text>
         </View>
       </View>
-      <View style={{ padding: 15, flex: 1 }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={{ padding: 15, flex: 1, paddingBottom: 40 }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ marginBottom: -60 }}
+        >
           <ProductHeaderInfo product={product} />
 
           <View style={{ marginVertical: 5 }}>
@@ -164,6 +164,44 @@ export default function CosellPage() {
             <Text style={{ color: Colors.light.cogrey, fontSize: 13 }}>
               Note: Maximum 20% of the Products price can be gained
             </Text>
+          </View>
+
+          <View
+            style={{
+              marginTop: 30,
+              marginBottom: 45,
+              //   borderWidth: 1,
+              //   alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: Colors.light.tabIconDefault,
+                borderRadius: 5,
+                width: "100%",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: Colors.light.bar,
+                  height: 6,
+                  borderRadius: 5,
+                  width: `${cosellPercent2}%`,
+                }}
+              ></View>
+            </View>
+            <ProgressBarButton
+              buttonStyle={{
+                borderWidth: 2,
+                borderColor: Colors.light.bar,
+                backgroundColor: Colors.light.background,
+                position: "absolute",
+              }}
+              cWidth={cWidth}
+              pad={0}
+              setExternalProgress={handleSetCosellPercent}
+            />
           </View>
 
           <LabelDetails labels={labels} />

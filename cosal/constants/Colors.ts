@@ -9,6 +9,7 @@ export default {
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorLight,
     price: "#4BB198",
+    bar: "#219653",
     greyCategory: "#F2F4F7",
     transparent: "#00000000",
     orange: "#E86313",
@@ -29,5 +30,6 @@ export default {
     orangeLight: "#FFF9F5",
     cogrey: "grey",
     details: "#F9FAFB",
+    bar: "#219653",
   },
 };
