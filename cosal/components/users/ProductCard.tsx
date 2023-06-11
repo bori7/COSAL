@@ -30,20 +30,28 @@ export default function ProductCard({
         <Image source={item?.uri} style={styles.image} resizeMode={"cover"} />
       </TouchableOpacity>
       <View style={styles.subInner}>
-        <Text style={{ color: "grey", marginBottom: 4 }}>{item?.category}</Text>
-        <Text style={styles.textFont}>{item?.title}</Text>
+        <View>
+          <Text style={{ color: "grey", marginBottom: 4 }}>
+            {item?.category}
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.textFont}>{item?.title}</Text>
+        </View>
+      </View>
+
+      <View style={{ paddingLeft: 15, paddingRight: 10, marginBottom: 15 }}>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: 10,
           }}
         >
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
             }}
           >
@@ -58,7 +66,7 @@ export default function ProductCard({
             <Text style={{ color: "grey" }}>{item?.item}</Text>
           </View>
 
-          <View style={{ alignSelf: "flex-end" }}>
+          <View style={{ alignSelf: "flex-end", marginLeft: 5 }}>
             <Text
               style={{
                 fontSize: 21,
@@ -84,8 +92,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   subInner: {
+    // borderWidth: 1,
+    flexDirection: "column",
     marginHorizontal: 15,
     marginTop: 20,
-    marginBottom: 30,
+    flex: 1,
+    marginBottom: 20,
   },
 });

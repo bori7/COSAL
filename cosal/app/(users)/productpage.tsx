@@ -11,7 +11,6 @@ import {
   AntDesign,
   Entypo,
   Feather,
-  FontAwesome5,
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import CartIcon from "../../components/users/CartIcon";
@@ -21,6 +20,7 @@ import Colors from "../../constants/Colors";
 import ProductCard from "../../components/users/ProductCard";
 import ProductHeaderInfo from "../../components/users/ProductHeaderInfo";
 import LabelDetails from "../../components/users/LabelDetails";
+import { DetailModal } from "../../components/DetailModal";
 
 export default function ProductPage() {
   const { productId } = useLocalSearchParams<"productpage">();
@@ -29,6 +29,7 @@ export default function ProductPage() {
   const [boxes, setBoxes] = useState<number[]>([1, 2, 3, 4, 5, 6]);
   const [labels, setLabels] = useState<LabelType[]>(LABELS);
   const [details, setDetails] = useState<number>(1);
+  const [cosellToggle, setCosellToggle] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -37,6 +38,9 @@ export default function ProductPage() {
       // console.log(productId);
       // console.log(product);
     }
+    return () => {
+      setCosellToggle(false);
+    };
   }, [productId]);
   return (
     <View style={{ flex: 1 }}>
@@ -168,9 +172,67 @@ export default function ProductPage() {
               <Feather name="link-2" size={24} color={"white"} />
               <Text style={{ fontWeight: "500", color: "white" }}>Cosell</Text>
 
-              <SimpleLineIcons name="arrow-down" size={15} color={"white"} />
+              <TouchableOpacity
+                onPress={() => {
+                  setCosellToggle(!cosellToggle);
+                }}
+                style={{
+                  // borderWidth: 1,
+                  // borderColor: "white",
+                  height: "50%",
+                  paddingVertical: 5,
+                  alignItems: "center",
+                }}
+              >
+                <SimpleLineIcons
+                  name={`${cosellToggle ? "arrow-down" : "arrow-up"}`}
+                  size={15}
+                  color={"white"}
+                />
+              </TouchableOpacity>
             </TouchableOpacity>
-
+            {cosellToggle && (
+              <DetailModal
+                xstyle={{
+                  top: -85,
+                  left: 140,
+                  transform: [{ rotate: "180deg" }],
+                }}
+                bstyle={{
+                  borderRadius: 0,
+                  height: 70,
+                  width: 110,
+                }}
+                children={
+                  <View
+                    style={{
+                      backgroundColor: Colors.light.transparent,
+                      transform: [{ rotate: "180deg" }],
+                      padding: 5,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: Colors.light.background,
+                        marginVertical: 3,
+                        fontWeight: "500",
+                      }}
+                    >
+                      Copy link
+                    </Text>
+                    <Text
+                      style={{
+                        color: Colors.light.background,
+                        marginVertical: 5,
+                        fontWeight: "500",
+                      }}
+                    >
+                      Add to shop
+                    </Text>
+                  </View>
+                }
+              />
+            )}
             <View
               style={{
                 borderColor: "black",
@@ -399,7 +461,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 30,
+    // marginBottom: 30,
     padding: 10,
   },
 });

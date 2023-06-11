@@ -17,6 +17,7 @@ import CartIcon from "../../components/users/CartIcon";
 import LabelDetails from "../../components/users/LabelDetails";
 import ProductHeaderInfo from "../../components/users/ProductHeaderInfo";
 import { ProgressBarButton } from "../../components/ProgressBarButton";
+import { DetailModal } from "../../components/DetailModal";
 
 export default function CosellPage() {
   const cWidth = 30;
@@ -26,6 +27,7 @@ export default function CosellPage() {
 
   const [cosellPercent2, setCosellPercent2] = useState(0); //5-97.5
   const product = PRODUCTS[productId];
+  const [cosellToggle, setCosellToggle] = useState<boolean>(false);
   const [boxes, setBoxes] = useState<number[]>([1, 2, 3, 4, 5, 6]);
   const [labels, setLabels] = useState<LabelType[]>([
     { label: "Product Price", value: "\u00A3" + 1000 },
@@ -169,7 +171,7 @@ export default function CosellPage() {
           <View
             style={{
               marginTop: 30,
-              marginBottom: 45,
+              marginBottom: 75,
               //   borderWidth: 1,
               //   alignItems: "center",
               justifyContent: "center",
@@ -185,7 +187,7 @@ export default function CosellPage() {
               <View
                 style={{
                   backgroundColor: Colors.light.bar,
-                  height: 6,
+                  height: 4,
                   borderRadius: 5,
                   width: `${cosellPercent2}%`,
                 }}
@@ -201,7 +203,16 @@ export default function CosellPage() {
               cWidth={cWidth}
               pad={0}
               setExternalProgress={handleSetCosellPercent}
-            />
+            >
+              <DetailModal
+                // text={`${cosellPercent2}%`}
+                children={
+                  <Text
+                    style={styles.highlightText}
+                  >{`${cosellPercent2}%`}</Text>
+                }
+              />
+            </ProgressBarButton>
           </View>
 
           <LabelDetails labels={labels} />
@@ -258,7 +269,67 @@ export default function CosellPage() {
           <Feather name="link-2" size={24} color={"white"} />
           <Text style={{ fontWeight: "500", color: "white" }}>Cosell</Text>
 
-          <SimpleLineIcons name="arrow-down" size={15} color={"white"} />
+          <TouchableOpacity
+            onPress={() => {
+              setCosellToggle(!cosellToggle);
+            }}
+            style={{
+              // borderWidth: 1,
+              // borderColor: "white",
+              height: "50%",
+              paddingVertical: 5,
+              alignItems: "center",
+            }}
+          >
+            <SimpleLineIcons
+              name={`${cosellToggle ? "arrow-down" : "arrow-up"}`}
+              size={15}
+              color={"white"}
+            />
+          </TouchableOpacity>
+          {cosellToggle && (
+            <DetailModal
+              xstyle={{
+                top: -85,
+                left: 65,
+                transform: [{ rotate: "180deg" }],
+              }}
+              bstyle={{
+                borderRadius: 0,
+                height: 70,
+                width: 110,
+              }}
+              children={
+                <View
+                  style={{
+                    backgroundColor: Colors.light.transparent,
+                    transform: [{ rotate: "180deg" }],
+                    padding: 5,
+                    // alignItems: "flex-start",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: Colors.light.background,
+                      marginVertical: 3,
+                      fontWeight: "500",
+                    }}
+                  >
+                    Copy link
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.light.background,
+                      marginVertical: 5,
+                      fontWeight: "500",
+                    }}
+                  >
+                    Add to shop
+                  </Text>
+                </View>
+              }
+            />
+          )}
         </View>
         <View
           style={{
@@ -328,5 +399,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 30,
     padding: 10,
+  },
+  highlightText: {
+    color: Colors.light.background,
+    justifyContent: "center",
+    textAlign: "center",
+    fontWeight: "600",
   },
 });

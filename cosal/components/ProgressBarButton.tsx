@@ -1,18 +1,21 @@
 import React, { useRef, useState } from "react";
-import { StyleProp, ViewStyle } from "react-native";
-import { View, Text, Animated, StyleSheet, Dimensions } from "react-native";
+import { Easing, StyleProp, ViewStyle } from "react-native";
+import { Animated, StyleSheet, Dimensions } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
+import { View, Text } from "./Themed";
 
 export const ProgressBarButton = ({
   buttonStyle,
   cWidth,
   pad,
   setExternalProgress,
+  children,
 }: {
   buttonStyle: StyleProp<ViewStyle>;
   cWidth: number;
   pad: number;
   setExternalProgress: Function;
+  children?: any;
 }) => {
   const BUTTON_WIDTH = cWidth || 50;
   const DEVICE_WIDTH = Dimensions.get("window").width;
@@ -26,10 +29,10 @@ export const ProgressBarButton = ({
     nativeEvent: { state: number; translationX?: any };
   }) => {
     const { translationX } = event.nativeEvent;
-    let newPosition = position?.current?._value || 0;
+    let oldPosition = position?.current?._value || 0;
 
-    newPosition = Math.min(
-      Math.max(newPosition + translationX, pad),
+    let newPosition = Math.min(
+      Math.max(oldPosition + translationX, pad),
       ALLOWANCE
     );
 
@@ -55,7 +58,8 @@ export const ProgressBarButton = ({
             buttonStyle,
           ]}
         >
-          <Text style={styles.buttonText}>{percentage}</Text>
+          {/* <Text style={styles.buttonText}>{percentage}</Text> */}
+          {children}
         </Animated.View>
       </PanGestureHandler>
     </View>
