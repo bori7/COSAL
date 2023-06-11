@@ -1,5 +1,4 @@
-import { BlurView } from "expo-blur";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -64,7 +63,7 @@ export default function Homepage({}) {
                 <TextInput
                   placeholder="Search ..."
                   placeholderTextColor={"white"}
-                  style={{ fontSize: 17 }}
+                  style={{ fontSize: 17, color: "white" }}
                 />
               </View>
 
