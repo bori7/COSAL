@@ -1,10 +1,11 @@
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Dimensions } from "react-native";
 import React from "react";
 import { View, Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { Feather } from "@expo/vector-icons";
 import { IMAGES } from "../../constants/Images";
 
+const screenWidth = Dimensions.get("screen").width;
 const HomePage = () => {
   return (
     <View style={styles.container}>
@@ -50,7 +51,8 @@ const HomePage = () => {
           <Text
             style={{
               color: Colors.light.background,
-              fontSize: 42,
+              //   fontSize: 42,
+              fontSize: screenWidth * 0.09,
               fontWeight: "700",
               marginBottom: 20,
             }}
