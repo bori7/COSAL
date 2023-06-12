@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   ScrollView,
+  StatusBar,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -44,6 +45,7 @@ export default function ProductPage() {
   }, [productId]);
   return (
     <View style={{ flex: 1 }}>
+      <StatusBar barStyle="light-content" />
       <View style={{ height: 280 }}>
         {productId && (
           <ImageBackground

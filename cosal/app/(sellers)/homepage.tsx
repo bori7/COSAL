@@ -1,12 +1,20 @@
-import { StyleSheet, Image, Dimensions, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Dimensions,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { View, Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { Feather } from "@expo/vector-icons";
 import { IMAGES } from "../../constants/Images";
+import { useRouter } from "expo-router";
 
 const screenWidth = Dimensions.get("screen").width;
 const HomePage = () => {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -70,21 +78,30 @@ const HomePage = () => {
             {"whatever it is you want to sell, we’ve got you covered"}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            marginTop: 30,
-            alignItems: "center",
-            justifyContent: "center",
-            height: 60,
-            marginHorizontal: 12,
+        <TouchableOpacity
+          onPress={() => {
+            router.push({
+              pathname: "/(sellers)/sellpage",
+            });
           }}
         >
-          <Text style={{ fontWeight: "500", fontSize: 17, marginRight: 20 }}>
-            Active shop
-          </Text>
-          <Feather name="arrow-right" size={24} color="black" />
-        </View>
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 30,
+              alignItems: "center",
+              justifyContent: "center",
+              height: 60,
+              marginHorizontal: 12,
+            }}
+          >
+            <Text style={{ fontWeight: "500", fontSize: 17, marginRight: 20 }}>
+              Active shop
+            </Text>
+
+            <Feather name="arrow-right" size={24} color="black" />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

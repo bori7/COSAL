@@ -5,6 +5,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { CATEGORIES, BACKGROUNDS } from "../../constants/Objects";
@@ -28,6 +29,7 @@ export default function Homepage({}) {
 
   return (
     <View style={{ flex: 1 }}>
+      <StatusBar barStyle="light-content" />
       <View style={{ height: 350 }}>
         <ImageBackground source={BACKGROUNDS[index]} style={styles.background}>
           <View style={styles.mainView}>
