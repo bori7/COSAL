@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Dimensions } from "react-native";
+import { StyleSheet, Image, Dimensions, StatusBar } from "react-native";
 import React from "react";
 import { View, Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
@@ -9,6 +9,7 @@ const screenWidth = Dimensions.get("screen").width;
 const HomePage = () => {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.top}>
         <View
           style={{
