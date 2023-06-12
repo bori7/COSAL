@@ -9,6 +9,7 @@ export default {
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorLight,
     price: "#4BB198",
+    sellerBg: "#D7D7D7",
     bar: "#219653",
     greyCategory: "#F2F4F7",
     transparent: "#00000000",

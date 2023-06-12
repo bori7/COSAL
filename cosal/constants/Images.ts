@@ -8,6 +8,8 @@ import laptopSale from "../assets/images/LaptopSale.png";
 import houseSale from "../assets/images/houseSale.png";
 import carSale from "../assets/images/carSale.png";
 
+import sellerBg from "../assets/images/SellerBg.png";
+
 export const IMAGES = {
   accessoryBg,
   phoneBg,
@@ -17,4 +19,5 @@ export const IMAGES = {
   laptopSale,
   houseSale,
   carSale,
+  sellerBg,
 };
