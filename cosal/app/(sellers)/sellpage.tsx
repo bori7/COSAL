@@ -151,6 +151,8 @@ const SellPage = () => {
                     {item.category}
                   </Text>
                   <Switch
+                    trackColor={{ true: Colors.light.tick }}
+                    thumbColor={Colors.light.background}
                     style={{}}
                     onValueChange={() => {
                       // console.log(index, categoryList[index].ticked);
