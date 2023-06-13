@@ -17,6 +17,7 @@ export default {
     orangeLight: "#FFF9F5",
     cogrey: "grey",
     details: "#F9FAFB",
+    tick: "#61D956",
   },
   dark: {
     text: "#fff",
@@ -32,5 +33,6 @@ export default {
     cogrey: "grey",
     details: "#F9FAFB",
     bar: "#219653",
+    tick: "#61D956",
   },
 };
