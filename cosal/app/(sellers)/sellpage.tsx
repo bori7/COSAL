@@ -12,37 +12,8 @@ import { Feather, SimpleLineIcons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
+import { CATEGORYLIST } from "../../constants/Objects";
 
-const CATEGORYLIST = [
-  {
-    category: "Electronics",
-    ticked: false,
-  },
-  {
-    category: "Computers",
-    ticked: false,
-  },
-  {
-    category: "Vehicles",
-    ticked: false,
-  },
-  {
-    category: "Properties",
-    ticked: false,
-  },
-  {
-    category: "Fashion",
-    ticked: false,
-  },
-  {
-    category: "Health & Beauty",
-    ticked: false,
-  },
-  {
-    category: "Agriculture & Food",
-    ticked: false,
-  },
-];
 const SellPage = () => {
   const router = useRouter();
   const [activeShop, setActiveShop] = useState<boolean>(false);

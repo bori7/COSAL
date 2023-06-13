@@ -83,3 +83,41 @@ export const PRODUCTS: ProductType[] = [
     rating: 4.9,
   },
 ];
+
+export const CATEGORYLIST = [
+  {
+    category: "Electronics",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Computers",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Vehicles",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Properties",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Fashion",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Health & Beauty",
+    ticked: false,
+    extraInfo: [],
+  },
+  {
+    category: "Agriculture & Food",
+    ticked: false,
+    extraInfo: [],
+  },
+];
