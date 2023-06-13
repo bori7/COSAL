@@ -56,7 +56,7 @@ const SellPage = () => {
         </Text>
         <View
           style={{
-            marginVertical: 50,
+            marginVertical: 25,
             marginHorizontal: 60,
             flexDirection: "row",
             // justifyContent: "space-around",
@@ -270,7 +270,7 @@ export default SellPage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 45,
+    paddingVertical: 25,
     paddingHorizontal: 30,
   },
   shop: {
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
     top: 70,
     zIndex: 5,
     backgroundColor: Colors.light.background,
-    height: "100%",
+    height: "92%",
   },
   category: {
     flexDirection: "row",
