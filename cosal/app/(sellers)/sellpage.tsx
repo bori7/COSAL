@@ -5,6 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   Switch,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { View, Text } from "../../components/Themed";
@@ -29,7 +31,8 @@ const SellPage = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <View style={{ flex: 4 }}>
+
+      <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={{
             marginTop: 28,
@@ -144,6 +147,7 @@ const SellPage = () => {
             <ScrollView
               style={styles.categories}
               showsVerticalScrollIndicator={false}
+              // contentContainerStyle={{ borderWidth: 1, borderColor: "orange" }}
             >
               {categoryList?.map((item, index) => (
                 <View key={index.toString()} style={styles.category}>
@@ -153,7 +157,7 @@ const SellPage = () => {
                   <Switch
                     trackColor={{ true: Colors.light.tick }}
                     thumbColor={Colors.light.background}
-                    style={{}}
+                    // style={{ borderWidth: 1, borderColor: "orange" }}
                     onValueChange={() => {
                       // console.log(index, categoryList[index].ticked);
                       const newcategoryList = categoryList;
@@ -168,42 +172,47 @@ const SellPage = () => {
               ))}
             </ScrollView>
           )}
-          <View style={{ marginVertical: 10 }}>
-            <Text
-              style={{
-                color: Colors.light.cogrey,
-                fontSize: 15,
-                marginBottom: 5,
-              }}
-            >
-              Confirm your email
-            </Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                placeholder="Email"
-                placeholderTextColor={Colors.light.cogrey}
-                style={styles.input}
-              />
+          <KeyboardAvoidingView
+          // behavior={Platform.OS === "ios" ? "padding" : "height"}
+          // style={{ flex: 1 }}
+          >
+            <View style={{ marginVertical: 10 }}>
+              <Text
+                style={{
+                  color: Colors.light.cogrey,
+                  fontSize: 15,
+                  marginBottom: 5,
+                }}
+              >
+                Confirm your email
+              </Text>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  placeholder="Email"
+                  placeholderTextColor={Colors.light.cogrey}
+                  style={styles.input}
+                />
+              </View>
             </View>
-          </View>
-          <View style={{ marginVertical: 10 }}>
-            <Text
-              style={{
-                color: Colors.light.cogrey,
-                fontSize: 15,
-                marginBottom: 5,
-              }}
-            >
-              Contact number
-            </Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                placeholder="number"
-                placeholderTextColor={Colors.light.cogrey}
-                style={styles.input}
-              />
+            <View style={{ marginVertical: 10 }}>
+              <Text
+                style={{
+                  color: Colors.light.cogrey,
+                  fontSize: 15,
+                  marginBottom: 5,
+                }}
+              >
+                Contact number
+              </Text>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  placeholder="number"
+                  placeholderTextColor={Colors.light.cogrey}
+                  style={styles.input}
+                />
+              </View>
             </View>
-          </View>
+          </KeyboardAvoidingView>
           <View
             style={{
               flexDirection: "row",
@@ -234,6 +243,8 @@ const SellPage = () => {
           </View>
         </View>
       </View>
+
+      {/* <View style={{ borderWidth: 1 }}> */}
       <TouchableOpacity
         style={{
           flexDirection: "row",
@@ -243,6 +254,8 @@ const SellPage = () => {
           marginHorizontal: 12,
           backgroundColor: Colors.light.text,
           bottom: 21,
+          borderWidth: 1,
+          // borderColor: "orange",
         }}
         onPress={() => {
           router.push({
@@ -311,9 +324,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     top: 70,
-    zIndex: 5,
+    zIndex: 15,
     backgroundColor: Colors.light.background,
-    height: "92%",
+    height: "100%",
+    // borderWidth: 1,
   },
   category: {
     flexDirection: "row",
