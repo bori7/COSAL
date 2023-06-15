@@ -9,6 +9,8 @@ type RootStackParamList = {
     productId: string | number | any;
   };
   index: undefined;
+  categorypage: undefined;
+  sellpage: undefined;
 };
 
 const { Link, useSearchParams, useRouter, useLocalSearchParams } =

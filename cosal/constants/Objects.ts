@@ -1,5 +1,6 @@
 import { ImageSourcePropType } from "react-native";
 import { IMAGES } from "./Images";
+import { SellerCategoryType } from "../shared/types/slices";
 
 export const BACKGROUNDS = [
   IMAGES.accessoryBg,
@@ -84,7 +85,7 @@ export const PRODUCTS: ProductType[] = [
   },
 ];
 
-export const CATEGORYLIST = [
+export const CATEGORYLIST: SellerCategoryType[] = [
   {
     category: "Electronics",
     ticked: false,
@@ -93,7 +94,7 @@ export const CATEGORYLIST = [
   {
     category: "Computers",
     ticked: false,
-    extraInfo: [],
+    extraInfo: ["Brand", "Display", "Storage", "Memory", "Model", "OS"],
   },
   {
     category: "Vehicles",

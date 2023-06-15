@@ -15,14 +15,20 @@ import Colors from "../../constants/Colors";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import { CATEGORYLIST } from "../../constants/Objects";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { updateCategories } from "../../store/slices/seller";
+import { SellerCategoryType } from "../../shared/types/slices";
 
 const SellPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const [activeShop, setActiveShop] = useState<boolean>(false);
   const [catToggle, setCatToggle] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
 
-  const [categoryList, setCategoryList] = useState(CATEGORYLIST);
+  const [categoryList, setCategoryList] =
+    useState<SellerCategoryType[]>(CATEGORYLIST);
 
   // useEffect(() => {
   //   console.log(categoryList);
@@ -253,13 +259,16 @@ const SellPage = () => {
           height: 60,
           marginHorizontal: 12,
           backgroundColor: Colors.light.text,
-          bottom: 21,
+          bottom: 35,
           borderWidth: 1,
           // borderColor: "orange",
         }}
         onPress={() => {
+          dispatch(
+            updateCategories([...categoryList?.filter((cat) => cat.ticked)])
+          );
           router.push({
-            pathname: "/(sellers)/sellpage",
+            pathname: "/(sellers)/categorypage",
           });
         }}
       >

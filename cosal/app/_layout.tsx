@@ -9,6 +9,8 @@ import { SplashScreen, Stack } from "expo-router";
 import React from "react";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 // export {
 //   // Catch any errors thrown by the Layout component.
@@ -49,12 +51,14 @@ function RootLayoutNav() {
   return (
     <>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack initialRouteName="index">
-          <Stack.Screen name="(users)" options={{ headerShown: false }} />
-          <Stack.Screen name="(sellers)" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        </Stack>
+        <Provider store={store}>
+          <Stack initialRouteName="index">
+            <Stack.Screen name="(users)" options={{ headerShown: false }} />
+            <Stack.Screen name="(sellers)" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          </Stack>
+        </Provider>
       </ThemeProvider>
     </>
   );
