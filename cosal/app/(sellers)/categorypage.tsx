@@ -303,13 +303,14 @@ const CategoryPage = () => {
                 £20
               </Text>
             </View>
-            <View
+            <TouchableOpacity
               style={{
                 backgroundColor: Colors.light.text,
                 alignItems: "center",
                 justifyContent: "center",
                 height: 60,
                 marginBottom: 20,
+                marginTop: 26,
               }}
             >
               <Text
@@ -321,7 +322,7 @@ const CategoryPage = () => {
               >
                 Publish Products
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
