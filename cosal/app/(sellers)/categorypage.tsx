@@ -31,7 +31,7 @@ const CategoryPage = () => {
       <View style={{ flex: 1, marginHorizontal: 10 }}>
         <TouchableOpacity
           style={{
-            marginTop: 28,
+            marginTop: 45,
             marginBottom: 20,
             flexDirection: "row",
             alignItems: "center",
