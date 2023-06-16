@@ -35,10 +35,16 @@ const SellPage = () => {
   // }, [categoryList]);
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+    >
+      <View
+        // behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <StatusBar barStyle="dark-content" />
 
-      <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={{
             marginTop: 28,
@@ -122,33 +128,31 @@ const SellPage = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <View style={{ marginVertical: 10 }}>
-            <Text
-              style={{
-                color: Colors.light.cogrey,
-                fontSize: 15,
-                marginBottom: 5,
-              }}
-            >
-              Select your product categories
+        <View style={{ marginVertical: 10 }}>
+          <Text
+            style={{
+              color: Colors.light.cogrey,
+              fontSize: 15,
+              marginBottom: 5,
+            }}
+          >
+            Select your product categories
+          </Text>
+          <TouchableOpacity
+            style={styles.inputContainer}
+            onPress={() => {
+              setCatToggle(!catToggle);
+            }}
+          >
+            <Text style={{ color: Colors.light.cogrey, fontSize: 16 }}>
+              Categories
             </Text>
-            <TouchableOpacity
-              style={styles.inputContainer}
-              onPress={() => {
-                setCatToggle(!catToggle);
-              }}
-            >
-              <Text style={{ color: Colors.light.cogrey, fontSize: 16 }}>
-                Categories
-              </Text>
-              <SimpleLineIcons
-                name={`${catToggle ? "arrow-up" : "arrow-down"}`}
-                size={15}
-                color={Colors.light.cogrey}
-              />
-            </TouchableOpacity>
-          </View>
+            <SimpleLineIcons
+              name={`${catToggle ? "arrow-up" : "arrow-down"}`}
+              size={15}
+              color={Colors.light.cogrey}
+            />
+          </TouchableOpacity>
           {catToggle && (
             <ScrollView
               style={styles.categories}
@@ -160,28 +164,36 @@ const SellPage = () => {
                   <Text style={{ fontSize: 15, fontWeight: "500" }}>
                     {item.category}
                   </Text>
-                  <Switch
-                    trackColor={{ true: Colors.light.tick }}
-                    thumbColor={Colors.light.background}
-                    // style={{ borderWidth: 1, borderColor: "orange" }}
-                    onValueChange={() => {
-                      // console.log(index, categoryList[index].ticked);
-                      const newcategoryList = categoryList;
-                      newcategoryList[index].ticked =
-                        !newcategoryList[index].ticked;
-                      // console.log(index, categoryList[index].ticked);
-                      setCategoryList([...newcategoryList]);
+                  <TouchableOpacity
+                    onPress={() => {
+                      console.log("Pressed");
                     }}
-                    value={item.ticked}
-                  />
+                    style={{
+                      // borderWidth: 1,
+                      // borderColor: "orange",
+                      padding: 3,
+                    }}
+                  >
+                    <Switch
+                      trackColor={{ true: Colors.light.tick }}
+                      thumbColor={Colors.light.background}
+                      // style={{ borderWidth: 1, borderColor: "orange" }}
+                      onValueChange={() => {
+                        // console.log(index, categoryList[index].ticked);
+                        const newcategoryList = categoryList;
+                        newcategoryList[index].ticked =
+                          !newcategoryList[index].ticked;
+                        console.log(index, categoryList[index].ticked);
+                        setCategoryList([...newcategoryList]);
+                      }}
+                      value={item.ticked}
+                    />
+                  </TouchableOpacity>
                 </View>
               ))}
             </ScrollView>
           )}
-          <KeyboardAvoidingView
-          // behavior={Platform.OS === "ios" ? "padding" : "height"}
-          // style={{ flex: 1 }}
-          >
+          <View>
             <View style={{ marginVertical: 10 }}>
               <Text
                 style={{
@@ -218,7 +230,7 @@ const SellPage = () => {
                 />
               </View>
             </View>
-          </KeyboardAvoidingView>
+          </View>
           <View
             style={{
               flexDirection: "row",
@@ -248,44 +260,57 @@ const SellPage = () => {
             </Text>
           </View>
         </View>
-      </View>
-
-      {/* <View style={{ borderWidth: 1 }}> */}
-      <TouchableOpacity
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 60,
-          marginHorizontal: 12,
-          backgroundColor: Colors.light.text,
-          bottom: 35,
-          borderWidth: 1,
-          // borderColor: "orange",
-        }}
-        onPress={() => {
-          dispatch(
-            updateCategories([...categoryList?.filter((cat) => cat.ticked)])
-          );
-          router.push({
-            pathname: "/(sellers)/categorypage",
-          });
-        }}
-      >
-        <Text
+        <View
           style={{
-            fontWeight: "500",
-            fontSize: 17,
-            marginRight: 20,
-            color: Colors.light.background,
+            // borderWidth: 1,
+            flex: 1,
+            justifyContent: "flex-end",
+            marginTop: 50,
           }}
         >
-          Continue
-        </Text>
+          {
+            <TouchableOpacity
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 60,
+                marginHorizontal: 12,
+                backgroundColor: Colors.light.text,
+                marginBottom: 30,
+              }}
+              onPress={() => {
+                dispatch(
+                  updateCategories([
+                    ...categoryList?.filter((cat) => cat.ticked),
+                  ])
+                );
+                router.push({
+                  pathname: "/(sellers)/categorypage",
+                });
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "500",
+                  fontSize: 17,
+                  marginRight: 20,
+                  color: Colors.light.background,
+                }}
+              >
+                Continue
+              </Text>
 
-        <Feather name="arrow-right" size={24} color={Colors.light.background} />
-      </TouchableOpacity>
-    </View>
+              <Feather
+                name="arrow-right"
+                size={24}
+                color={Colors.light.background}
+              />
+            </TouchableOpacity>
+          }
+        </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -293,9 +318,10 @@ export default SellPage;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     paddingVertical: 25,
     paddingHorizontal: 30,
+    height: "100%",
   },
   shop: {
     padding: 8,
@@ -332,10 +358,10 @@ const styles = StyleSheet.create({
     padding: 10,
     position: "absolute",
     width: "100%",
-    top: 70,
+    top: 60,
     zIndex: 15,
     backgroundColor: Colors.light.background,
-    height: "100%",
+    height: "85%",
     // borderWidth: 1,
   },
   category: {

@@ -3,6 +3,7 @@
     "name": "cosal",
     "slug": "cosal",
     "version": "1.0.0",
+    "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -23,15 +24,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
-        "jsEngine": "jsc"
+        "jsEngine": "hermes"
       }
     },
     "web": {
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png"
     },
-    "jsEngine": "hermes"
-
-    
+    "plugins": [
+      "react-native-v8"
+    ]
   }
 }
