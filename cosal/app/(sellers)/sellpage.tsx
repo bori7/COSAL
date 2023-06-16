@@ -36,13 +36,14 @@ const SellPage = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
+      // behavior={Platform.OS === "ios" ? "padding" : "padding"}
+      contentContainerStyle={{
+        backgroundColor: Colors.light.background,
+      }}
+      behavior="position"
+      keyboardVerticalOffset={-200}
     >
-      <View
-        // behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+      <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
 
         <TouchableOpacity
@@ -69,6 +70,7 @@ const SellPage = () => {
         >
           select your kind of shop
         </Text>
+
         <View
           style={{
             marginVertical: 25,
@@ -128,6 +130,7 @@ const SellPage = () => {
             </Text>
           </TouchableOpacity>
         </View>
+
         <View style={{ marginVertical: 10 }}>
           <Text
             style={{
@@ -260,6 +263,7 @@ const SellPage = () => {
             </Text>
           </View>
         </View>
+
         <View
           style={{
             // borderWidth: 1,
