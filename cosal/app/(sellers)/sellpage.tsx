@@ -37,7 +37,8 @@ const SellPage = () => {
   return (
     <KeyboardAvoidingView
       // behavior={Platform.OS === "ios" ? "padding" : "padding"}
-      contentContainerStyle={{
+
+      style={{
         backgroundColor: Colors.light.background,
       }}
       behavior="position"
@@ -326,6 +327,7 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
     paddingHorizontal: 30,
     height: "100%",
+    backgroundColor: Colors.light.background,
   },
   shop: {
     padding: 8,
