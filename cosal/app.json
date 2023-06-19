@@ -3,7 +3,7 @@
     "name": "cosal",
     "slug": "cosal",
     "version": "1.0.0",
-    "jsEngine": "hermes",
+    "jsEngine": "jsc",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -23,9 +23,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "jsEngine": "hermes"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.boriios.cosal"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +33,11 @@
     },
     "plugins": [
       "react-native-v8"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bf318a42-d86b-4de4-a355-9b00e219af36"
+      }
+    }
   }
 }
