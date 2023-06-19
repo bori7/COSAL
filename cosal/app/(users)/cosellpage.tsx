@@ -45,7 +45,7 @@ export default function CosellPage() {
   return (
     <View style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
-      <View style={{ height: 280 }}>
+      <View style={{ height: 230 }}>
         {productId && (
           <ImageBackground
             source={PRODUCTS[productId].uri}
@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   },
   mainView: {
-    marginTop: 50,
+    marginTop: 30,
     backgroundColor: Colors.light.transparent,
   },
   MainText: {

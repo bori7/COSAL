@@ -35,7 +35,7 @@ export default function Homepage({}) {
           <View style={styles.mainView}>
             <View
               style={{
-                marginTop: 10,
+                marginTop: 5,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
